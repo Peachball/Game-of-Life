@@ -7,6 +7,7 @@ package gameoflifeattempt1;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
@@ -78,7 +79,7 @@ public class Board {
     }
 
     public void showBoard() {
-        frame.setVisible(true);
+        setCanvasSize();
     }
 
     public void hideBoard() {
@@ -88,6 +89,7 @@ public class Board {
     public void setCanvasSize() {
         setCanvasSize(600, 600);
     }
+    //Canvas refers to the size of the frame, which makes no sense...
 
     public void setCanvasSize(int width, int height) {
         frame.setSize(width, height);
@@ -107,9 +109,25 @@ public class Board {
 
     }
 
+    public void filledRectangle(double x, double y, double width, double height) {
+        if (width < 0) {
+            throw new RuntimeException("width must be positive");
+        }
+        if (height < 0) {
+            throw new RuntimeException("width must be positive");
+        }
+        double xcoord =xcanvassize/(xmax-xmin)*(x-xmin);
+        double ycoord=ycanvassize/(ymax-ymin)*(y-ymin);
+        double xsize=width*xcanvassize/(xmax-xmin);
+        double ysize=height*ycanvassize/(ymax-ymin);
+        offscreen.draw(new Rectangle2D.Double(xcoord,ycoord,xsize,ysize));
+        
+    }
+
     public Board(int xDim, int yDim) {
         board = new boolean[xDim][yDim];
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setCanvasSize();
     }
 
 }

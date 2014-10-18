@@ -16,7 +16,9 @@ public class GameOfLifeAttempt1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("Input the dimensions plox");
         int dimensions = StdIn.readInt();
+        Board board = new Board(dimensions, dimensions);
         // TODO code application logic here
     }
     
