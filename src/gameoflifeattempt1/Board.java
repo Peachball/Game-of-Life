@@ -37,17 +37,17 @@ public class Board {
     public static final Color DEFAULT_PEN_COLOR = BLACK;
     //Frame initialization
     private static JFrame frame;
-    private static int xcanvassize;
-    private static int ycanvassize;
+    public int xcanvassize;
+    public int ycanvassize;
 
     //Board Borders (The sizes, and the ratio of border to
     //total size of frame
-    private static double borderratio = 0.005;
+    private static final double borderratio = 0.005;
     private static double xmin;
     private static double xmax;
     private static double ymin;
     private static double ymax;
-    private static double DEFAULT_BORDER_SIZE = 1;
+    private static final double DEFAULT_BORDER_SIZE = 1;
 
     //Buffers for Images
     private BufferedImage offscreenImage, onscreenImage;
@@ -116,12 +116,33 @@ public class Board {
         if (height < 0) {
             throw new RuntimeException("width must be positive");
         }
-        double xcoord =xcanvassize/(xmax-xmin)*(x-xmin);
-        double ycoord=ycanvassize/(ymax-ymin)*(y-ymin);
-        double xsize=width*xcanvassize/(xmax-xmin);
-        double ysize=height*ycanvassize/(ymax-ymin);
-        offscreen.draw(new Rectangle2D.Double(xcoord,ycoord,xsize,ysize));
-        
+        double xcoord = xcanvassize / (xmax - xmin) * (x - xmin);
+        double ycoord = ycanvassize / (ymax - ymin) * (y - ymin);
+        double xsize = width * xcanvassize / (xmax - xmin);
+        double ysize = height * ycanvassize / (ymax - ymin);
+        if (xsize <= 1 && ysize <= 1) {
+            pixel(x, y);
+        } else {
+            offscreen.draw(new Rectangle2D.Double(xcoord - xsize / 2, ycoord - ysize / 2, xsize, ysize));
+        }
+    }
+    public void filledSquare(double x,double y, double width){
+     if (width < 0) {
+            throw new RuntimeException("width must be positive");
+        }
+        double xcoord = xcanvassize / (xmax - xmin) * (x - xmin);
+        double ycoord = ycanvassize / (ymax - ymin) * (y - ymin);
+        double xsize = width * xcanvassize / (xmax - xmin);
+        double ysize = xsize;
+        if (xsize <= 1 && ysize <= 1) {
+            pixel(x, y);
+        } else {
+            offscreen.draw(new Rectangle2D.Double(xcoord - xsize / 2, ycoord - ysize / 2, xsize, ysize));
+        }
+    }
+    public void pixel(double x, double y) {
+        offscreen.fillRect((int) Math.round(xcanvassize / (xmax - xmin) * (x - xmin)),
+                (int) Math.round(ycanvassize / (ymax - ymin) * (y - ymin)), 1, 1);
     }
 
     public Board(int xDim, int yDim) {
