@@ -126,8 +126,9 @@ public class Board {
             offscreen.draw(new Rectangle2D.Double(xcoord - xsize / 2, ycoord - ysize / 2, xsize, ysize));
         }
     }
-    public void filledSquare(double x,double y, double width){
-     if (width < 0) {
+
+    public void filledSquare(double x, double y, double width) {
+        if (width < 0) {
             throw new RuntimeException("width must be positive");
         }
         double xcoord = xcanvassize / (xmax - xmin) * (x - xmin);
@@ -140,9 +141,16 @@ public class Board {
             offscreen.draw(new Rectangle2D.Double(xcoord - xsize / 2, ycoord - ysize / 2, xsize, ysize));
         }
     }
+
     public void pixel(double x, double y) {
         offscreen.fillRect((int) Math.round(xcanvassize / (xmax - xmin) * (x - xmin)),
                 (int) Math.round(ycanvassize / (ymax - ymin) * (y - ymin)), 1, 1);
+    }
+
+    public void show() {
+        onscreen.drawImage(offscreenImage, 0, 0, null);
+        frame.repaint();
+        frame.setVisible(true);
     }
 
     public Board(int xDim, int yDim) {
