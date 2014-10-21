@@ -11,22 +11,26 @@ package gameoflifeattempt1;
  */
 public class Rules {
 
-    public boolean[][] board;
+    public static boolean[][] board;
     public Board canvas;
 
-    public void intialize(boolean[][] board) {
-        this.board = board;
+    public static void intialize(boolean[][] file) {
+        board = file;
+    }
+    public static void intialize(int x, int y){
+        board = new boolean[x][y];
     }
 
     public void draw() {
-        int a = canvas.xcanvassize;
-        int b = canvas.ycanvassize;
+        double a = canvas.xcanvassize/board.length;
+        double b = canvas.ycanvassize/board[0].length;
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
                 if (board[x][y]) {
-                    canvas.filledRectangle((double) x, (double) y, (double) a, (double) b);
+                    canvas.filledRectangle((double) x, (double) y,  a,  b);
                 }
             }
         }
+        canvas.show();
     }
 }

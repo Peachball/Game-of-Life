@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gameoflifeattempt1;
 
 /**
@@ -19,7 +18,8 @@ public class GameOfLifeAttempt1 {
         System.out.println("Input the dimensions plox");
         int dimensions = StdIn.readInt();
         Board board = new Board(dimensions, dimensions);
+        Rules.intialize(dimensions,dimensions);
         // TODO code application logic here
     }
-    
+
 }

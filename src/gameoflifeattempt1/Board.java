@@ -78,9 +78,6 @@ public class Board {
         ymax = max + borderratio * size;
     }
 
-    public void showBoard() {
-        setCanvasSize();
-    }
 
     public void hideBoard() {
         frame.setVisible(false);
