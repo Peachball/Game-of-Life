@@ -16,13 +16,16 @@ public class Rules {
 
     public Rules(boolean[][] file) {
         board = file;
+        canvas = new Board(board.length, board[0].length);
     }
 
     public Rules(int x, int y) {
         board = new boolean[x][y];
+        canvas = new Board(board.length, board[0].length);
     }
 
     public void draw() {
+        canvas.setPenColor(Board.WHITE);
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
                 if (board[x][y]) {
@@ -33,7 +36,7 @@ public class Rules {
         canvas.show();
     }
 
-    public  void create() {
+    public void create() {
         int sides = 0;
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
@@ -52,22 +55,32 @@ public class Rules {
                 if (x + 1 < board.length && y + 1 < board[0].length && board[x + 1][y + 1]) {
                     sides += 1;
                 }
-                if(y+1<board.length&&board[x][y+1]){
-                    sides+=1;
+                if (y + 1 < board.length && board[x][y + 1]) {
+                    sides += 1;
                 }
-                if(y>1&&x+1<board.length&&board[x+1][y-1]){
-                    sides+=1;
+                if (y > 1 && x + 1 < board.length && board[x + 1][y - 1]) {
+                    sides += 1;
                 }
-                if(x>1&&y+1<board[0].length&&board[x-1][y+1]){
-                    sides+=1;
+                if (x > 1 && y + 1 < board[0].length && board[x - 1][y + 1]) {
+                    sides += 1;
                 }
                 if (sides == 3 && !board[x][y]) {
                     board[x][y] = true;
                 }
-                if(sides>=3&&board[x][y]){
-                    
+                if (sides > 3 && board[x][y]) {
+                    board[x][y] = false;
+                }
+                if (sides < 2 && board[x][y]) {
+                    board[x][y] = false;
                 }
             }
         }
+        canvas.show();
+    }
+
+    public void intializeFrame() {
+        canvas.setPenColor(Board.BLACK);
+        canvas.filledRectangle(-board.length, -board[0].length, board.length,
+                board[0].length);
     }
 }

@@ -17,8 +17,11 @@ public class GameOfLifeAttempt1 {
     public static void main(String[] args) {
         System.out.println("Input the dimensions plox");
         int dimensions = StdIn.readInt();
-        Board board = new Board(dimensions, dimensions);
-        Rules rules = new Rules(dimensions,dimensions);
+        Rules rules = new Rules(dimensions, dimensions);
+        while (true) {
+            rules.create();
+            rules.draw();
+        }
         // TODO code application logic here
     }
 

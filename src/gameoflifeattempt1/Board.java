@@ -39,6 +39,7 @@ public class Board {
     private static JFrame frame;
     public int xcanvassize;
     public int ycanvassize;
+    public Color pencolor;
 
     //Board Borders (The sizes, and the ratio of border to
     //total size of frame
@@ -72,12 +73,15 @@ public class Board {
         ySize(0, 1);
     }
 
+    public void setPenColor(Color x) {
+        pencolor = x;
+    }
+
     public void ySize(double min, double max) {
         double size = max - min;
         ymin = min - borderratio * size;
         ymax = max + borderratio * size;
     }
-
 
     public void hideBoard() {
         frame.setVisible(false);
@@ -92,10 +96,10 @@ public class Board {
         frame.setSize(width, height);
         xcanvassize = width;
         ycanvassize = height;
-        intialize();
+
     }
 
-    private void intialize() {
+    public void intialize() {
         frame = new JFrame("Game of Life");
         frame.setVisible(false);
         setCanvasSize();
@@ -152,6 +156,7 @@ public class Board {
 
     public Board(int xDim, int yDim) {
         board = new boolean[xDim][yDim];
+        intialize();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setCanvasSize();
     }
