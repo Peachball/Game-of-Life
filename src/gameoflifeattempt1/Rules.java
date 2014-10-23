@@ -25,11 +25,11 @@ public class Rules {
     }
 
     public void draw() {
-        canvas.setPenColor(Board.WHITE);
+        canvas.setPenColor(Board.BLACK);
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
                 if (board[x][y]) {
-                    canvas.filledRectangle((double) x, (double) y, 1, 1);
+                    StdDraw.filledRectangle((double) x, (double) y, 1, 1);
                 }
             }
         }

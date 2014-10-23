@@ -39,7 +39,7 @@ public class Board {
     private static JFrame frame;
     public int xcanvassize;
     public int ycanvassize;
-    public Color pencolor;
+    public Color penColor;
 
     //Board Borders (The sizes, and the ratio of border to
     //total size of frame
@@ -73,8 +73,13 @@ public class Board {
         ySize(0, 1);
     }
 
+    public void setPenColor() {
+        setPenColor(Color.BLACK);
+    }
+
     public void setPenColor(Color x) {
-        pencolor = x;
+        penColor = x;
+        offscreen.setColor(penColor);
     }
 
     public void ySize(double min, double max) {
@@ -107,7 +112,9 @@ public class Board {
         offscreenImage = new BufferedImage(xcanvassize, ycanvassize, BufferedImage.TYPE_INT_ARGB);
         onscreen = onscreenImage.createGraphics();
         offscreen = offscreenImage.createGraphics();
-
+        offscreen.setColor(Color.white);
+        offscreen.fillRect(0, 0, xcanvassize, ycanvassize);
+        setPenColor();
     }
 
     public void filledRectangle(double x, double y, double width, double height) {
