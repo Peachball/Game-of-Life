@@ -22,6 +22,7 @@ public class GameOfLifeAttempt1 {
         while (true) {
             rules.create();
             rules.draw();
+            rules.mouseListener();
         }
         // TODO code application logic here
     }

@@ -33,6 +33,19 @@ public class Rules {
         }
     }
 
+    public void mouseListener() {
+        if (StdDraw.mousePressed()){
+            if(board[(int)StdDraw.mouseX()][(int)StdDraw.mouseY()]){
+                board[(int)StdDraw.mouseX()][(int)StdDraw.mouseY()] = false;
+                return;
+            }
+            else{
+                board[(int)StdDraw.mouseX()][(int)StdDraw.mouseY()] = true;
+                return;
+            }
+        }
+    }
+
     public void create() {
         int sides = 0;
         for (int x = 0; x < board.length; x++) {
@@ -77,6 +90,6 @@ public class Rules {
 
     public void intializeFrame() {
         StdDraw.setPenColor(Color.BLACK);
-        StdDraw.filledRectangle(0, 0, board.length,board[0].length );
+        StdDraw.filledRectangle(0, 0, board.length, board[0].length);
     }
 }
