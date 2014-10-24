@@ -5,6 +5,8 @@
  */
 package gameoflifeattempt1;
 
+import java.awt.Color;
+
 /**
  *
  * @author chen
@@ -12,20 +14,16 @@ package gameoflifeattempt1;
 public class Rules {
 
     public static boolean[][] board;
-    public Board canvas;
 
     public Rules(boolean[][] file) {
         board = file;
-        canvas = new Board(board.length, board[0].length);
     }
 
     public Rules(int x, int y) {
         board = new boolean[x][y];
-        canvas = new Board(board.length, board[0].length);
     }
 
     public void draw() {
-        canvas.setPenColor(Board.BLACK);
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
                 if (board[x][y]) {
@@ -33,7 +31,6 @@ public class Rules {
                 }
             }
         }
-        canvas.show();
     }
 
     public void create() {
@@ -75,12 +72,11 @@ public class Rules {
                 }
             }
         }
-        canvas.show();
+
     }
 
     public void intializeFrame() {
-        canvas.setPenColor(Board.BLACK);
-        canvas.filledRectangle(-board.length, -board[0].length, board.length,
-                board[0].length);
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.filledRectangle(0, 0, board.length,board[0].length );
     }
 }
