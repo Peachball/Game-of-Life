@@ -27,19 +27,22 @@ public class Rules {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
                 if (board[x][y]) {
-                    StdDraw.filledRectangle((double) x, (double) y, 1, 1);
+                    StdDraw.setPenColor(Color.WHITE);
+                    StdDraw.filledRectangle(x, y, .4, .4);
+                } else {
+                    StdDraw.setPenColor(Color.BLACK);
+                    StdDraw.filledRectangle(x, y, .4, .4);
                 }
             }
         }
     }
 
     public void mouseListener() {
-        if (StdDraw.mousePressed()){
-            if(board[(int)StdDraw.mouseX()][(int)StdDraw.mouseY()]){
-                board[(int)StdDraw.mouseX()][(int)StdDraw.mouseY()] = false;
-            }
-            else{
-                board[(int)StdDraw.mouseX()][(int)StdDraw.mouseY()] = true;
+        if (StdDraw.mousePressed()) {
+            if (board[(int) StdDraw.mouseX()][(int) StdDraw.mouseY()]) {
+                board[(int) StdDraw.mouseX()][(int) StdDraw.mouseY()] = false;
+            } else {
+                board[(int) StdDraw.mouseX()][(int) StdDraw.mouseY()] = true;
             }
         }
     }
@@ -87,15 +90,8 @@ public class Rules {
     }
 
     public void intializeFrame() {
-        StdDraw.setXscale();
-        StdDraw.setPenColor(Color.BLACK);
-        StdDraw.filledRectangle(0, 0, board.length, board[0].length);
+        StdDraw.setXscale(0, board.length);
+        StdDraw.setYscale(0, board[0].length);
         StdDraw.setPenColor(Color.WHITE);
-        for(int x = 0;x<board.length;x++){
-            StdDraw.line(x+.5, 0, x+.5, board[0].length);
-        }
-        for(int y = 0;y<board[0].length;y++){
-            StdDraw.line(0, y+.5, board.length, y+.5);
-        }
     }
 }
