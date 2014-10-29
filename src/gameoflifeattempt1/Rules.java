@@ -45,6 +45,7 @@ public class Rules {
                 board[(int) StdDraw.mouseX()][(int) StdDraw.mouseY()] = true;
             }
         }
+        System.out.println((int)StdDraw.mouseX()+","+(int) StdDraw.mouseY());
     }
 
     public void create() {
