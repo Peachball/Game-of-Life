@@ -36,7 +36,13 @@ public class Rules {
             }
         }
     }
-
+    public char keyListener(){
+        if(!StdDraw.hasNextKeyTyped()){
+            return 'z';
+        }
+        char input =StdDraw.nextKeyTyped();
+        return input;
+    }
     public void mouseListener() {
         if (StdDraw.mousePressed()) {
             if (board[(int) StdDraw.mouseX()][(int) StdDraw.mouseY()]) {
@@ -45,20 +51,19 @@ public class Rules {
                 board[(int) StdDraw.mouseX()][(int) StdDraw.mouseY()] = true;
             }
         }
-        System.out.println((int)StdDraw.mouseX()+","+(int) StdDraw.mouseY());
     }
 
     public void create() {
         int sides = 0;
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[0].length; y++) {
-                if (x > 1 && board[x - 1][y]) {
+                if (x >= 1 && board[x - 1][y]) {
                     sides += 1;
                 }
-                if (x > 1 && y > 1 && board[x - 1][y - 1]) {
+                if (x >= 1 && y >= 1 && board[x - 1][y - 1]) {
                     sides += 1;
                 }
-                if (y > 1 && board[x][y - 1]) {
+                if (y >= 1 && board[x][y - 1]) {
                     sides += 1;
                 }
                 if (x + 1 < board.length && board[x + 1][y]) {
@@ -70,10 +75,10 @@ public class Rules {
                 if (y + 1 < board.length && board[x][y + 1]) {
                     sides += 1;
                 }
-                if (y > 1 && x + 1 < board.length && board[x + 1][y - 1]) {
+                if (y >= 1 && x + 1 < board.length && board[x + 1][y - 1]) {
                     sides += 1;
                 }
-                if (x > 1 && y + 1 < board[0].length && board[x - 1][y + 1]) {
+                if (x >= 1 && y + 1 < board[0].length && board[x - 1][y + 1]) {
                     sides += 1;
                 }
                 if (sides == 3 && !board[x][y]) {
