@@ -23,6 +23,9 @@ public class GameOfLifeAttempt1 {
             rules.create();
             rules.draw();
             rules.mouseListener();
+            if (rules.keyListener() == 'p') {
+                StdIn.readString();
+            }
         }
         // TODO code application logic here
     }
